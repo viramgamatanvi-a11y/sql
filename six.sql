@@ -1,8 +1,10 @@
-CREATE DATABASE companydata;
+-- Create a new database
+CREATE DATABASE SchoolDB;
 
-USE companydata;
+-- Use the created database
+USE SchoolDB;
 
--- Create a sample table
+-- Create a table 
 CREATE TABLE Employees (
     EmpID INT PRIMARY KEY,
     Name VARCHAR(100),
@@ -11,8 +13,8 @@ CREATE TABLE Employees (
     JoiningDate DATE
 );
 
--- Insert a single record
-INSERT INTO Employees (EmpID, Name, Salary, Department, JoiningDate) 
+-- Insert a single recoed
+INSERT INTO Employees (EmpID , Name , Salary , Department , JoiningDate )
 VALUES (1, 'John Doe', 50000.00, 'HR', '2023-01-10');
 
 -- Insert multiple records
@@ -44,7 +46,8 @@ WHERE EmpID = 2;
 -- Delete a specific record
 DELETE FROM Employees WHERE EmpID = 3;
 
--- Reset auto-increment after deletion (if using AUTO_INCREMENT)
-ALTER TABLE Employees AUTO_INCREMENT = 1;
+SELECT * FROM Employees WHERE salary > 50000;
+
+
 
 
