@@ -1,3 +1,4 @@
+drop database transformer;
 -- Create a new database 
 CREATE DATABASE Transformer;
 
@@ -137,11 +138,11 @@ SELECT
 FROM Orders;
 
 -- Assign a discount based on TotalAmount in Orders:
-SELECT
+SELECT 
     OrderID, TotalAmount,
     CASE
-        WHEN TotalAmount >= 200 THEN '20% Discount'
-        WHEN TotalAmount >= 150 THEN '10% Discount'
+        WHEN TotalAmount >= 1000 THEN '10% Discount'
+        WHEN TotalAmount >= 500 THEN '5% Discount'
         ELSE 'No Discount'
     END AS Discount
 FROM Orders;
