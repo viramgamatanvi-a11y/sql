@@ -1,4 +1,3 @@
-drop database transformer;
 -- Create a new database 
 CREATE DATABASE Transformer;
 
