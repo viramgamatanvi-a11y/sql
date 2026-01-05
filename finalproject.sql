@@ -117,7 +117,7 @@ WHERE StudentID = 6;
 -- CRUD Operations for Departments table
 -- Insert values
 INSERT INTO Departments
-VALUES (6,'Statistics');
+VALUES (6,'data science');
 
 -- Select all records
 SELECT * FROM Departments;
@@ -227,17 +227,7 @@ WHERE e.CourseID = 101
 SELECT AVG(Credits) AS AverageCredits FROM Courses;
 
 -- Find the maximum salary of instructors in the computer science department
-ALTER TABLE Instructors
-ADD Salary INT;
-
-UPDATE Instructors
-SET Salary = 80000
-WHERE InstructorID = 1;
-
-SELECT MAX(i.Salary) AS MaxSalary
-FROM Instructors i
-JOIN Departments d ON i.DepartmentID = d.DepartmentID
-WHERE d.DepartmentName = 'Computer Science';
+-- Salary column not available
 
 -- Count the number of students enrolled in each department
 SELECT d.DepartmentName,COUNT(DISTINCT e.StudentID) AS TotalStudents
