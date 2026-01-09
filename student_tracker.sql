@@ -214,9 +214,6 @@ SELECT s.* FROM Students s
 JOIN Departments d ON s.department_id = d.department_id
 WHERE d.department_name = 'Computer Science';
 
-select * from departments where department_name = 'Computer Science';
-
-
 -- Retrieve the top 10 highest-scoring students.
 SELECT student_id, SUM(marks_obtained) AS total_marks FROM Grades
 GROUP BY student_id
@@ -325,7 +322,7 @@ WHERE marks_obtained >
       (SELECT AVG(marks_obtained) FROM Grades);
 
 -- Retrieve courses taught by faculty members with at least 5 years of experience
--- column is not available
+-- Experience_Years column is not available for Faculty table 
 
 -- Identify students who have missed more than 10 classes.
 SELECT student_id FROM Attendance
@@ -371,10 +368,13 @@ GROUP BY student_id;
 
 -- Show the cumulative attendance percentage per course.
 SELECT 
-    course_id,
+    course_id, 
     attendance_date,
-    (SUM(CASE WHEN status = 'Present' THEN 1 ELSE 0 END) OVER (PARTITION BY course_id ORDER BY attendance_date) / 
-     COUNT(*) OVER (PARTITION BY course_id ORDER BY attendance_date)) * 100 AS cumulative_attendance_pct
+    Status,
+    COUNT(CASE WHEN Status = 'Present' THEN 1 END) OVER (PARTITION BY course_id ORDER BY attendance_date) AS Cumulative_Presents,
+    COUNT(*) OVER (PARTITION BY course_id ORDER BY attendance_date) AS Cumulative_Total_Classes,
+    (COUNT(CASE WHEN Status = 'Present' THEN 1 END) OVER (PARTITION BY course_id ORDER BY attendance_date) * 100.0 / 
+     NULLIF(COUNT(*) OVER (PARTITION BY course_id ORDER BY attendance_date), 0)) AS cumulative_attendance_pct
 FROM Attendance;
 
 -- Display the running total of students enrolled per month.
