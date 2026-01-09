@@ -33,7 +33,7 @@ CREATE TABLE Students (
     Dob DATE,
     Gender VARCHAR(10),
     Email VARCHAR(50),
-    Phone_number INT,
+    Phone_number BIGINT,
     Address VARCHAR(50),
     Admission_date DATE,
     Department_id INT,
@@ -61,7 +61,7 @@ CREATE TABLE Faculty (
 	Faculty_id INT PRIMARY KEY,
     Name VARCHAR(100),
     Email VARCHAR(50),
-    Phone_number INT,
+    Phone_number BIGINT,
 	Department_id INT,
 	FOREIGN KEY (Department_id) REFERENCES Departments(Department_id)
 );
@@ -214,6 +214,9 @@ SELECT s.* FROM Students s
 JOIN Departments d ON s.department_id = d.department_id
 WHERE d.department_name = 'Computer Science';
 
+select * from departments where department_name = 'Computer Science';
+
+
 -- Retrieve the top 10 highest-scoring students.
 SELECT student_id, SUM(marks_obtained) AS total_marks FROM Grades
 GROUP BY student_id
@@ -320,7 +323,7 @@ WHERE g.grade_id IS NULL;
 SELECT * FROM Grades
 WHERE marks_obtained >
       (SELECT AVG(marks_obtained) FROM Grades);
-      
+
 -- Retrieve courses taught by faculty members with at least 5 years of experience
 -- column is not available
 
